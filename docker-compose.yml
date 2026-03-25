@@ -1,0 +1,23 @@
+services:
+  coding-agent:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: coding-agent-box:latest
+    container_name: coding-agent-box
+    gpus: all
+    stdin_open: true
+    tty: true
+    working_dir: /home/agent/projects
+    environment:
+      NVIDIA_VISIBLE_DEVICES: all
+      NVIDIA_DRIVER_CAPABILITIES: all
+      TZ: Asia/Shanghai
+    volumes:
+      - ${HOME}/coding-agent-box/projects:/home/agent/projects
+      - ${HOME}/coding-agent-box/configs/.opencode:/home/agent/.opencode
+      - ${HOME}/coding-agent-box/configs/.claude:/home/agent/.claude
+      - ${HOME}/coding-agent-box/configs/.codex:/home/agent/.codex
+      - ${HOME}/coding-agent-box/configs/.pi:/home/agent/.pi
+    command: sleep infinity
+    restart: unless-stopped
