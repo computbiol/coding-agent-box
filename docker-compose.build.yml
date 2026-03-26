@@ -1,0 +1,6 @@
+services:
+  coding-agent:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: coding-agent-box:dev

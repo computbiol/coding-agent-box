@@ -30,11 +30,17 @@ mkdir -p ~/coding-agent-box/configs/.pi
 
 ## Start
 
-Build and launch:
+Pull and launch the published image:
 
 ```bash
-docker compose build
+docker compose pull
 docker compose up -d
+```
+
+To pin a specific published version:
+
+```bash
+CODING_AGENT_BOX_IMAGE=ghcr.io/computbiol/coding-agent-box:v0.1.0 docker compose up -d
 ```
 
 Enter the container:
@@ -43,29 +49,17 @@ Enter the container:
 docker exec -it coding-agent-box bash
 ```
 
-## Release
+## Local build
 
-This repository uses GitHub Actions for two separate flows:
-
-- `CI`: runs on pushes to `main` and on pull requests only when Docker-related files or workflow files change, and verifies that the Docker image still builds.
-- `Release`: runs when a Git tag matching `v*` is pushed, then validates the build, pushes the image to GHCR, and creates a GitHub Release.
-
-Release with:
+To build the image locally instead of pulling from GHCR:
 
 ```bash
-git checkout main
-git pull --ff-only
-git tag -a v0.1.0 -m "Release v0.1.0"
-git push origin main
-git push origin v0.1.0
+docker compose -f docker-compose.yml -f docker-compose.build.yml up -d --build
 ```
 
-Published image tags include:
+## Maintenance
 
-- `ghcr.io/computbiol/coding-agent-box:v0.1.0`
-- `ghcr.io/computbiol/coding-agent-box:0.1.0`
-- `ghcr.io/computbiol/coding-agent-box:0.1`
-- `ghcr.io/computbiol/coding-agent-box:latest`
+- Release instructions for maintainers are in `docs/releasing.md`.
 
 ## Notes
 

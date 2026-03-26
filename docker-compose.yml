@@ -1,9 +1,6 @@
 services:
   coding-agent:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: coding-agent-box:latest
+    image: ${CODING_AGENT_BOX_IMAGE:-ghcr.io/computbiol/coding-agent-box:latest}
     container_name: coding-agent-box
     gpus: all
     stdin_open: true
