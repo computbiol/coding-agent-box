@@ -43,6 +43,30 @@ Enter the container:
 docker exec -it coding-agent-box bash
 ```
 
+## Release
+
+This repository uses GitHub Actions for two separate flows:
+
+- `CI`: runs on pushes to `main` and on pull requests, and verifies that the Docker image still builds.
+- `Release`: runs when a Git tag matching `v*` is pushed, then validates the build, pushes the image to GHCR, and creates a GitHub Release.
+
+Release with:
+
+```bash
+git checkout main
+git pull --ff-only
+git tag -a v0.1.0 -m "Release v0.1.0"
+git push origin main
+git push origin v0.1.0
+```
+
+Published image tags include:
+
+- `ghcr.io/computbiol/coding-agent-box:v0.1.0`
+- `ghcr.io/computbiol/coding-agent-box:0.1.0`
+- `ghcr.io/computbiol/coding-agent-box:0.1`
+- `ghcr.io/computbiol/coding-agent-box:latest`
+
 ## Notes
 
 - GPU support requires the host machine to have NVIDIA Container Toolkit installed.
