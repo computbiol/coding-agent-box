@@ -47,7 +47,7 @@ docker exec -it coding-agent-box bash
 
 This repository uses GitHub Actions for two separate flows:
 
-- `CI`: runs on pushes to `main` and on pull requests, and verifies that the Docker image still builds.
+- `CI`: runs on pushes to `main` and on pull requests only when Docker-related files or workflow files change, and verifies that the Docker image still builds.
 - `Release`: runs when a Git tag matching `v*` is pushed, then validates the build, pushes the image to GHCR, and creates a GitHub Release.
 
 Release with:

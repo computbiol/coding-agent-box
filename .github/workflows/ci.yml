@@ -2,9 +2,19 @@ name: CI
 
 on:
   pull_request:
+    paths:
+      - Dockerfile
+      - docker-compose.yml
+      - .dockerignore
+      - .github/workflows/**
   push:
     branches:
       - main
+    paths:
+      - Dockerfile
+      - docker-compose.yml
+      - .dockerignore
+      - .github/workflows/**
   workflow_dispatch:
 
 concurrency:
