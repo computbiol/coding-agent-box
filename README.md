@@ -2,6 +2,11 @@
 
 GPU-enabled Docker environment for coding agents on a fresh Linux machine.
 
+## Prerequisites
+
+- Docker Desktop or Docker Engine
+- Docker Compose v2 (`docker compose`)
+
 ## Included tools
 
 - Node.js
